@@ -18,6 +18,12 @@ const accessToken = (
     return token;
 };
 
+const verifyToken = (token:string, secret: Secret) => {
+    const verify = jwt.verify(token, secret);
+    return verify
+}
+
 export const generateToken = {
-  accessToken,
+    accessToken,
+    verifyToken
 };
