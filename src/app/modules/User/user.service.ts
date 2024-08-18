@@ -1,6 +1,8 @@
 import { IUser } from "./user.interface"
 import bcrypt from "bcrypt";
 import { prisma } from "../../helper/prisma";
+import { UserProfile } from "@prisma/client";
+import { IsExist } from "../../helper/IsExist";
 
 const registration = async (data: IUser) => {
     const hashedPassword = bcrypt.hashSync(data.password, 12);
@@ -38,6 +40,29 @@ const registration = async (data: IUser) => {
     return result
 }
 
-export const UserService = {
-    registration
+const profile = async (id: string) => {
+    await IsExist.userExist(id);
+    const result = await prisma.userProfile.findUniqueOrThrow({
+        where: {
+            userId:id
+        }
+    })
+    return result;
 }
+
+const updateProfile = async (id: string, data: Partial<UserProfile>) => {
+    await IsExist.userExist(id);
+  const result = await prisma.userProfile.update({
+    where: {
+      userId: id,
+      },
+      data
+  });
+  return result;
+};
+
+export const UserService = {
+  registration,
+  profile,
+  updateProfile,
+};

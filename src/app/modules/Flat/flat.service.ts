@@ -1,5 +1,6 @@
 import { Flat, Prisma } from "@prisma/client"
 import { calculatePagination } from "../../helper/calculatePagination"
+import { IsExist } from "../../helper/IsExist"
 import { prisma } from "../../helper/prisma"
 import { flatSearchAbleFields } from "./flat.constant"
 import { IFlat, IFlatFilterData, TOptions } from "./flat.interface"
@@ -62,7 +63,8 @@ const getFlats = async (filter: IFlatFilterData, options: TOptions) => {
     };
 };
 
-const updateFlat = async (id:string,data: Partial<Flat>) => {
+const updateFlat = async (id: string, data: Partial<Flat>) => {
+  await IsExist.flatExist(id);
   const result = await prisma.flat.update({
     where: {
       id: id,
