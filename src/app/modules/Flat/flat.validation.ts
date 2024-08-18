@@ -31,5 +31,5 @@ const addFlatSchema = z.object({
 });
 
 export const FlatValidation = {
-    addFlatSchema
-}
+  addFlatSchema,
+};

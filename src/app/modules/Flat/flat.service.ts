@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client"
+import { Flat, Prisma } from "@prisma/client"
 import { calculatePagination } from "../../helper/calculatePagination"
 import { prisma } from "../../helper/prisma"
 import { flatSearchAbleFields } from "./flat.constant"
@@ -62,7 +62,18 @@ const getFlats = async (filter: IFlatFilterData, options: TOptions) => {
     };
 };
 
+const updateFlat = async (id:string,data: Partial<Flat>) => {
+  const result = await prisma.flat.update({
+    where: {
+      id: id,
+    },
+    data
+  });
+  return result
+}
+
 export const FlatServices = {
     addFlats,
-    getFlats
+    getFlats,
+  updateFlat,
 }

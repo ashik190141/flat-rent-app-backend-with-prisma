@@ -15,4 +15,6 @@ router.post(
 
 router.get("/all-flats", FlatController.getFlats)
 
+router.patch("/update/:id", auth(), FlatController.updateFlat)
+
 export const flatRoutes = router;

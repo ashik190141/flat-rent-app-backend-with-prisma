@@ -22,7 +22,7 @@ const login = async (payload: {
         throw new apiError(httpStatus.BAD_REQUEST,"password do not match")
     }
 
-    const accessToken = generateToken.accessToken({ email: userData.email }, config.accessToken as Secret, config.accessTokenExpire as string)
+    const accessToken = generateToken.accessToken({ id: userData.id }, config.accessToken as Secret, config.accessTokenExpire as string)
     
     return {
         id: userData.id,

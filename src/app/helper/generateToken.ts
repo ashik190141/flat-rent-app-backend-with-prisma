@@ -3,14 +3,14 @@ import jwt from "jsonwebtoken";
 
 const accessToken = (
   userData: {
-    email: string;
+    id: string;
   },
   secret: Secret,
   expire: string
 ) => {
   const token = jwt.sign(
     {
-      email: userData.email,
+      id: userData.id,
     },
     secret,
     { expiresIn: expire, algorithm: "HS256" }
