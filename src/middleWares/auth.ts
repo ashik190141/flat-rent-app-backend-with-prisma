@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import httpStatus from "http-status";
 import { Secret } from "jsonwebtoken";
 import config from "../app/config";
+import apiError from "../app/errors/apiError";
 import { generateToken } from '../app/helper/generateToken';
 
 export const auth = () => {

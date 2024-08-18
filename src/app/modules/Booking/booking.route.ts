@@ -13,4 +13,8 @@ router.post(
   BookingController.bookingFlat
 );
 
+router.get("/booking-request", auth(), BookingController.getBookingRequest)
+
+router.patch("/booking-flat-status/:id", auth(), BookingController.updateBookingFlatStatus);
+
 export const bookingRoutes = router;

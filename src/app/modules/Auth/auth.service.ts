@@ -5,6 +5,7 @@ import httpStatus from "http-status";
 import config from "../../config";
 import { generateToken } from '../../helper/generateToken';
 import { Secret } from 'jsonwebtoken';
+import apiError from "../../errors/apiError";
 
 const login = async (payload: {
     email: string,
